@@ -1,0 +1,56 @@
+autoload -Uz compinit compinit
+bindkey -e
+
+export LC_ALL="en_US.utf-8"
+export PATH="$HOME/go/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.dotfiles/scripts:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="/usr/local/bin:$PATH"
+export PATH="$HOMEBREW_REPOSITORY/opt/coreutils/libexec/gnubin:$PATH"
+export PATH="$HOMEBREW_REPOSITORY/opt/curl/bin:$PATH"
+export MANPAGER='nvim +Man!'
+export MANWIDTH=999
+export EDITOR="nvim"
+
+# Setting fd as the default source for fzf
+export FZF_DEFAULT_COMMAND='fd -H --type f'
+# To apply the command to CTRL-T as well
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+autoload -U select-word-style
+select-word-style bash
+
+export HIGHLIGHT_STYLE=zenburn
+
+setopt inc_append_history
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source ~/.fzf/shell/completion.zsh
+source ~/scripts/f.zsh
+source ~/.config/fzf.sh
+
+alias rd="ranger"
+alias n="nvim"
+alias c="chezmoi"
+function set_title_precmd(){
+    echo -ne "\033]0; $(basename "$PWD") \007"
+}
+
+function set_title_preexec() {
+  printf "\e]2;%s\a" "$1"
+}
+
+
+if type brew &>/dev/null; then
+	FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+	autoload -Uz compinit
+	compinit
+fi
+
+precmd_functions+=(set_title_precmd)
+preexec_functions+=(set_title_preexec)
+
+eval "$(starship init zsh)"
+
+export GPG_TTY=$(tty)
+#source ~/.dotfiles/scripts/base16-nord.sh

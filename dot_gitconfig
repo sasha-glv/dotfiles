@@ -1,0 +1,12 @@
+[user]
+	name = Aleksandr Guljajev
+	email = aguljajev@pm.me
+	signingkey = E157606F76528CAE
+[commit]
+	gpgsign = true
+[gpg]
+	program = /usr/local/bin/gpg
+[github]
+	user = alex-glv
+[init]
+	defaultBranch = main
