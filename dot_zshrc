@@ -32,14 +32,7 @@ source ~/.config/fzf.sh
 alias rd="ranger"
 alias n="nvim"
 alias c="chezmoi"
-function set_title_precmd(){
-    echo -ne "\033]0; $(basename "$PWD") \007"
-}
-
-function set_title_preexec() {
-  printf "\e]2;%s\a" "$1"
-}
-
+alias dotfiles='git --git-dir=$HOME/.dotfiles-git/ --work-tree=$HOME'
 
 if type brew &>/dev/null; then
 	FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
@@ -50,7 +43,5 @@ fi
 precmd_functions+=(set_title_precmd)
 preexec_functions+=(set_title_preexec)
 
-eval "$(starship init zsh)"
-
 export GPG_TTY=$(tty)
-#source ~/.dotfiles/scripts/base16-nord.sh
+eval "$(starship init zsh)"

@@ -20,3 +20,14 @@ function __ch_p_dir {
 
 zle -N __ch_p_dir
 bindkey '^W' __ch_p_dir
+
+function set_title_precmd(){
+    echo -ne "\033]0; $(basename "$PWD") \007"
+}
+
+function set_title_preexec() {
+  printf "\e]2;%s\a" "$1"
+}
+
+
+
