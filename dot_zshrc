@@ -4,7 +4,6 @@ bindkey -e
 export LC_ALL="en_US.utf-8"
 export PATH="$HOME/go/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
-export PATH="$HOME/.dotfiles/scripts:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="/usr/local/bin:$PATH"
 export PATH="$HOMEBREW_REPOSITORY/opt/coreutils/libexec/gnubin:$PATH"
@@ -32,7 +31,7 @@ source ~/.config/fzf.sh
 alias rd="ranger"
 alias n="nvim"
 alias c="chezmoi"
-alias dotfiles='git --git-dir=$HOME/.dotfiles-git/ --work-tree=$HOME'
+alias dotfiles='git --git-dir=$HOME/dotfiles-git/ --work-tree=$HOME'
 
 if type brew &>/dev/null; then
 	FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
