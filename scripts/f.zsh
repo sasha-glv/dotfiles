@@ -1,5 +1,5 @@
 function __ch_p_dir {
-	target=$(cat ~/.dotfiles/.projects | fzf)
+	target=$(cat ~/.projects | fzf)
 	if [ ! -z $target ]; then
 		cd $target 
 	else
@@ -29,5 +29,6 @@ function set_title_preexec() {
   printf "\e]2;%s\a" "$1"
 }
 
-
-
+function dotfiles {
+   /usr/bin/git --git-dir=$HOME/dotfiles-git/ --work-tree=$HOME $@
+}
